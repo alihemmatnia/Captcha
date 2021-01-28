@@ -1,0 +1,76 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>کپتچا کد ~ space code</title>
+    <style>
+        input[type=text] {
+            padding: 12px 20px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #0d81b6;
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        canvas {
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body onload="createCaptcha()">
+    <form onsubmit="validateCaptcha()">
+        <div id="captcha">
+        </div>
+        <input type="text" placeholder="کد را بنویسید" id="cpatchaTextBox" />
+        <button type="submit">تایید</button>
+    </form>
+    <script>
+        var code;
+        function createCaptcha() {
+            document.getElementById('captcha').innerHTML = "";
+            var charsArray =
+                "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@!#$%^&*";
+            var lengthOtp = 6;
+            var captcha = [];
+            for (var i = 0; i < lengthOtp; i++) {
+                var index = Math.floor(Math.random() * charsArray.length + 1); 
+                if (captcha.indexOf(charsArray[index]) == -1)
+                    captcha.push(charsArray[index]);
+                else i--;
+            }
+            var canv = document.createElement("canvas");
+            canv.id = "captcha";
+            canv.width = 100;
+            canv.height = 50;
+            var ctx = canv.getContext("2d");
+            ctx.font = "25px Georgia";
+            ctx.strokeText(captcha.join(""), 0, 30);
+            code = captcha.join("").toLowerCase();
+            document.getElementById("captcha").appendChild(canv); 
+        }
+        function validateCaptcha() {
+            event.preventDefault();
+            if (document.getElementById("cpatchaTextBox").value.toLowerCase() == code) {
+                alert("درست است")
+            } else {
+                alert("نادرست است تلاش دوباره");
+                createCaptcha();
+            }
+        }
+
+    </script>
+</body>
+
+</html>
