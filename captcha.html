@@ -38,19 +38,19 @@
     </form>
     <script>
         var code;
-        function createCaptcha() {
+        const createCaptcha => () {
             document.getElementById('captcha').innerHTML = "";
-            var charsArray =
+            let charsArray =
                 "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@!#$%^&*";
-            var lengthOtp = 6;
-            var captcha = [];
+            let lengthOtp = 6;
+            let captcha = [];
             for (var i = 0; i < lengthOtp; i++) {
                 var index = Math.floor(Math.random() * charsArray.length + 1); 
                 if (captcha.indexOf(charsArray[index]) == -1)
                     captcha.push(charsArray[index]);
                 else i--;
             }
-            var canv = document.createElement("canvas");
+            let canv = document.createElement("canvas");
             canv.id = "captcha";
             canv.width = 100;
             canv.height = 50;
@@ -63,7 +63,7 @@
         function validateCaptcha() {
             event.preventDefault();
             if(document.getElementById("cpatchaTextBox").value == null){
-                alert("خالی نباشه);
+                alert("خالی نباشه");
             }
             if (document.getElementById("cpatchaTextBox").value.toLowerCase() == code) {
                 alert("درست است")
