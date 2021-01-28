@@ -62,8 +62,12 @@
         }
         function validateCaptcha() {
             event.preventDefault();
+            if(document.getElementById("cpatchaTextBox").value == null){
+                alert("خالی نباشه);
+            }
             if (document.getElementById("cpatchaTextBox").value.toLowerCase() == code) {
                 alert("درست است")
+                delete canv;
             } else {
                 alert("نادرست است تلاش دوباره");
                 createCaptcha();
