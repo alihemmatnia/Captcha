@@ -33,7 +33,7 @@
     <form onsubmit="validateCaptcha()">
         <div id="captcha">
         </div>
-        <input type="text" placeholder="کد را بنویسید" id="cpatchaTextBox" />
+        <input type="text" required="" placeholder="کد را بنویسید" id="cpatchaTextBox" />
         <button type="submit">تایید</button>
     </form>
     <script>
@@ -62,9 +62,7 @@
         }
         function validateCaptcha() {
             event.preventDefault();
-            if(document.getElementById("cpatchaTextBox").value == null){
-                alert("خالی نباشه");
-            }
+          
             if (document.getElementById("cpatchaTextBox").value.toLowerCase() == code) {
                 alert("درست است")
                 
